@@ -1,1 +1,317 @@
-# hanatierstest
+<!doctype html>
+
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MCTiers — Demo Clone</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent-1:#6ee7b7;
+      --accent-2:#60a5fa;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius:14px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.06), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(110,231,183,0.04), transparent),
+                  var(--bg);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;align-items:flex-start;justify-content:center;
+      gap:24px;
+    }.container{width:100%;max-width:var(--maxw);}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{
+  width:56px;height:56px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent-2),var(--accent-1));box-shadow:0 6px 24px rgba(2,6,23,0.6);
+  font-weight:800;color:#071428;font-size:20px
+}
+.brand h1{font-size:18px;margin:0}
+.brand p{margin:0;color:var(--muted);font-size:13px}
+
+nav{display:flex;gap:12px;align-items:center}
+.btn{background:transparent;border:1px solid var(--glass);padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#051428;border:0}
+
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-bottom:28px}
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:22px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(2,6,23,0.6);border:1px solid var(--glass)}
+
+.hero-left h2{margin:0 0 8px 0;font-size:28px}
+.hero-left p{color:var(--muted);margin:0 0 18px 0}
+
+.toggle{display:inline-flex;align-items:center;background:var(--glass-2);padding:6px;border-radius:999px;border:1px solid var(--glass)}
+.toggle button{background:transparent;border:0;padding:6px 12px;border-radius:999px;color:var(--muted);cursor:pointer;font-weight:700}
+.toggle button.active{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#071428}
+
+/* tiers */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:18px;border-radius:12px;border:1px solid var(--glass);display:flex;flex-direction:column;gap:12px}
+.card .head{display:flex;align-items:center;justify-content:space-between}
+.tag{font-weight:800;padding:6px 10px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass);font-size:14px}
+.price{font-size:22px;font-weight:800}
+.features{list-style:none;padding:0;margin:0;color:var(--muted);font-size:14px}
+.buy{margin-top:auto;display:flex;gap:8px}
+.btn.small{padding:8px 10px;font-size:14px}
+
+/* highlight card */
+.card.popular{border:1px solid rgba(102,126,234,0.18);box-shadow:0 10px 40px rgba(96,165,250,0.08);transform:translateY(-6px)}
+
+/* responsive */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .tiers{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  body{padding:20px}
+  .tiers{grid-template-columns:1fr}
+  header{flex-direction:column;align-items:flex-start;gap:12px}
+  nav{width:100%;justify-content:space-between}
+}
+
+/* footer */
+footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+
+/* little utilities */
+.pill{background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--muted);font-weight:700}
+.badge{font-size:12px;background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:#031426;padding:6px 8px;border-radius:8px;font-weight:800}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">M</div>
+        <div>
+          <h1>MCTiers — Demo</h1>
+          <p>Trang giá & tiers kiểu MCTiers (bản demo HTML)</p>
+        </div>
+      </div>
+      <nav>
+        <div class="pill">Mainnet</div>
+        <button class="btn">Docs</button>
+        <button class="btn">API</button>
+        <button class="btn primary">Get Started</button>
+      </nav>
+    </header><section class="hero">
+  <div class="panel hero-left">
+    <h2>Chọn gói phù hợp cho server của m</h2>
+    <p>Demo trang mô phỏng giao diện hiển thị tiers và giá giống mctiers.com — responsive, dễ chỉnh sửa.</p>
+
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <div class="toggle" id="billingToggle">
+        <button data-mode="monthly" class="active">Monthly</button>
+        <button data-mode="yearly">Yearly</button>
+      </div>
+      <div class="pill">Performance: <strong style="margin-left:8px">High</strong></div>
+      <div class="badge">Popular</div>
+    </div>
+
+    <div class="tiers" id="tiers">
+      <!-- Card 1 -->
+      <div class="card" data-monthly="2.5" data-yearly="24">
+        <div class="head">
+          <div>
+            <div class="tag">Bronze</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">Entry-level — phù hợp server nhỏ</div>
+          </div>
+          <div class="price">$<span class="price-val">2.5</span><span style="color:var(--muted);font-size:13px">/mo</span></div>
+        </div>
+        <ul class="features">
+          <li>10 slots</li>
+          <li>Basic support</li>
+          <li>Shared resources</li>
+        </ul>
+        <div class="buy">
+          <button class="btn small">Buy</button>
+          <button class="btn small">Details</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card popular" data-monthly="6" data-yearly="60">
+        <div class="head">
+          <div>
+            <div class="tag">Silver</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">Gói phổ biến cho server vừa</div>
+          </div>
+          <div class="price">$<span class="price-val">6</span><span style="color:var(--muted);font-size:13px">/mo</span></div>
+        </div>
+        <ul class="features">
+          <li>50 slots</li>
+          <li>Priority support</li>
+          <li>Dedicated process</li>
+        </ul>
+        <div class="buy">
+          <button class="btn small primary">Buy now</button>
+          <button class="btn small">Preview</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card" data-monthly="12" data-yearly="120">
+        <div class="head">
+          <div>
+            <div class="tag">Gold</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">Server lớn, performance cao</div>
+          </div>
+          <div class="price">$<span class="price-val">12</span><span style="color:var(--muted);font-size:13px">/mo</span></div>
+        </div>
+        <ul class="features">
+          <li>200 slots</li>
+          <li>Full support</li>
+          <li>Dedicated resources</li>
+        </ul>
+        <div class="buy">
+          <button class="btn small">Contact Sales</button>
+          <button class="btn small">Docs</button>
+        </div>
+      </div>
+
+      <!-- More sample cards (repeat) for layout -->
+      <div class="card" data-monthly="20" data-yearly="200">
+        <div class="head">
+          <div>
+            <div class="tag">Platinum</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">Enterprise</div>
+          </div>
+          <div class="price">$<span class="price-val">20</span><span style="color:var(--muted);font-size:13px">/mo</span></div>
+        </div>
+        <ul class="features">
+          <li>Unlimited slots</li>
+          <li>Dedicated engineer</li>
+          <li>99.99% uptime</li>
+        </ul>
+        <div class="buy">
+          <button class="btn small primary">Contact</button>
+          <button class="btn small">Custom</button>
+        </div>
+      </div>
+
+      <div class="card" data-monthly="40" data-yearly="400">
+        <div class="head">
+          <div>
+            <div class="tag">Diamond</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">For huge networks</div>
+          </div>
+          <div class="price">$<span class="price-val">40</span><span style="color:var(--muted);font-size:13px">/mo</span></div>
+        </div>
+        <ul class="features">
+          <li>Custom SLA</li>
+          <li>On-call support</li>
+          <li>Managed backups</li>
+        </ul>
+        <div class="buy">
+          <button class="btn small">Request Quote</button>
+          <button class="btn small">More</button>
+        </div>
+      </div>
+
+      <div class="card" data-monthly="80" data-yearly="800">
+        <div class="head">
+          <div>
+            <div class="tag">Legend</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">VIP / Custom</div>
+          </div>
+          <div class="price">$<span class="price-val">80</span><span style="color:var(--muted);font-size:13px">/mo</span></div>
+        </div>
+        <ul class="features">
+          <li>Hand-tailored</li>
+          <li>24/7 elite support</li>
+          <li>Private infra</li>
+        </ul>
+        <div class="buy">
+          <button class="btn small">Apply</button>
+          <button class="btn small">Contact</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <aside class="panel" style="height:fit-content">
+    <h3 style="margin-top:0">Why choose this?</h3>
+    <p style="color:var(--muted);margin-bottom:12px">Tính năng chính giống MCTiers: gọn, rõ ràng, hiển thị giá, so sánh tiers, dễ tích hợp vào page hiện có.</p>
+
+    <div style="display:grid;gap:8px">
+      <div style="display:flex;justify-content:space-between">
+        <div style="color:var(--muted)">Uptime</div>
+        <div style="font-weight:800">99.99%</div>
+      </div>
+      <div style="display:flex;justify-content:space-between">
+        <div style="color:var(--muted)">Support</div>
+        <div style="font-weight:800">24/7</div>
+      </div>
+      <div style="display:flex;justify-content:space-between">
+        <div style="color:var(--muted)">Locations</div>
+        <div style="font-weight:800">EU / US / AS</div>
+      </div>
+    </div>
+
+    <hr style="margin:14px 0;border:none;border-top:1px solid var(--glass)">
+    <div style="display:flex;gap:8px">
+      <button class="btn primary" style="flex:1">Open Store</button>
+      <button class="btn" style="flex:1">Contact</button>
+    </div>
+  </aside>
+</section>
+
+<footer>
+  © 2025 MCTiers Demo — bản clone HTML. Upload file lên GitHub Pages / Netlify / Vercel để host miễn phí.
+</footer>
+
+  </div>  <script>
+    // Billing toggle behavior
+    (function(){
+      const toggle = document.getElementById('billingToggle');
+      const buttons = toggle.querySelectorAll('button');
+      const cards = document.querySelectorAll('.card');
+
+      function setMode(mode){
+        buttons.forEach(b=>{b.classList.toggle('active', b.dataset.mode===mode)})
+        cards.forEach(c=>{
+          const val = c.getAttribute('data-' + mode);
+          const priceEls = c.querySelectorAll('.price-val');
+          priceEls.forEach(el=>{ el.textContent = val; });
+          // change /mo or /yr label
+          const suffix = mode==='yearly' ? '/yr' : '/mo';
+          c.querySelectorAll('.price-val').forEach(v=>{
+            // find sibling small label
+            const lbl = v.parentElement.querySelector('span');
+            if(lbl) lbl.textContent = suffix;
+          });
+        })
+      }
+
+      buttons.forEach(b=>{
+        b.addEventListener('click', ()=> setMode(b.dataset.mode))
+      })
+
+      // init
+      setMode('monthly');
+
+      // make sample interactivity: mark top card as popular when clicked
+      document.querySelectorAll('.card .head').forEach(h=>{
+        h.addEventListener('click', ()=>{
+          document.querySelectorAll('.card').forEach(c=>c.classList.remove('popular'));
+          h.closest('.card').classList.add('popular');
+        })
+      });
+    })();
+  </script></body>
+</html>
